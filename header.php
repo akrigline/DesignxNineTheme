@@ -24,10 +24,9 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
   <link href='http://fonts.googleapis.com/css?family=Oswald:400,700|Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/bootstrap.min.css">
 
-  <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+  <script src="<?php bloginfo('template_directory'); ?>/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 </head>
 <body>
 <!--[if lt IE 8]>
