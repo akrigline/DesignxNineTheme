@@ -13,6 +13,7 @@
 
 get_header(); ?>
 
+<?php query_posts(array('category_name'=>'intro')); ?>
 
   <section class="intro background-img first">
     <header>
@@ -27,6 +28,9 @@ get_header(); ?>
     </figure>
   </section>
 
+<?php wp_reset_query(); ?>
+
+<?php query_posts(array('category_name'=>'portfolio')); ?>
 
   <section class="portfolio">
     <header>
@@ -43,28 +47,49 @@ get_header(); ?>
 
   </section>
 
+<?php wp_reset_query(); ?>
+
   <section class="team">
     <div class="container">
       <header>
+      	<?php 
+      		$catObj = get_category_by_slug('students'); 
+				  $catID = $catObj->term_id;
+
+	      	get_categories(array(
+	      		'child_of' => $catID,
+	      		'hide_empty' => 0
+					));
+				?>
         <nav class="nav-team">
           <ul class="list-unstyled">
             <li><a href="#">12&ndash;13</a></li>
           </ul>
         </nav>
       </header>
+
       <div class="col-xs-12 col-sm-6 col-md-4 members">
-        <h4>2012&ndash;2013</h4>
-        <ul class="list-unstyled">
-          <li><a href="#"><h4>Andrew Krigline</h4></a></li>
-        </ul>
+        <h4><?php echo $cat_title; ?></h4>
+        <?php if ( is not in awards ) : ?>
+
+	        <ul class="list-unstyled">
+	          <li><a href="#"><h4>Andrew Krigline</h4></a></li>
+	        </ul>
+
+	      <?php endif; ?>
       </div>
+
       <div class="col-xs-12 col-sm-6 col-md-8 awards">
-        <dl class="row">
-          <span class="award col-xs-6 col-sm-4 col-md-3">
-              <dt><img src="img/addy.png" alt="addys"><span class="sr-only">Addy Award</span></dt>
-              <dd>Addy Award Title</dd>
-          </span>
-        </dl>
+      	<?php if (is in awards) : ?>
+
+	        <dl class="row">
+	          <span class="award col-xs-6 col-sm-4 col-md-3">
+	              <dt><img src="img/addy.png" alt="addys"><span class="sr-only">Addy Award</span></dt>
+	              <dd>Addy Award Title</dd>
+	          </span>
+	        </dl>
+
+	      <?php endif; ?>
       </div>
     </div>
   </section>
