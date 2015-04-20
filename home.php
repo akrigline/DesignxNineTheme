@@ -56,14 +56,23 @@ get_header(); ?>
       		$catObj = get_category_by_slug('students'); 
 				  $catID = $catObj->term_id;
 
-	      	get_categories(array(
-	      		'child_of' => $catID,
-	      		'hide_empty' => 0
-					));
+	      	$studentYears = get_categories(array(
+									      		'child_of' => $catID,
+									      		'hide_empty' => 0
+													));
 				?>
         <nav class="nav-team">
           <ul class="list-unstyled">
-            <li><a href="#">12&ndash;13</a></li>
+          	<?php $yearNumber = 0; ?>
+          	<?php foreach ($studentYears as $year) { ?>
+
+          		<?php $cat_title = $studentYears[$yearNumber]; ?>
+
+	            <li><a href="#"><?php echo $cat_title; ?></a></li>
+
+	            <?php $yearNumber++; ?>
+
+            <?php } ?>
           </ul>
         </nav>
       </header>
