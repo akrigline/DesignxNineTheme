@@ -53,53 +53,88 @@ get_header(); ?>
     <div class="container">
       <header>
       	<?php 
-      		$catObj = get_category_by_slug('students'); 
-				  $catID = $catObj->term_id;
+      		$studentsObj = get_category_by_slug('students'); 
+				  $studentsID = $studentsObj->term_id;
 
-	      	$studentYears = get_categories(array(
-									      		'child_of' => $catID,
+          $awardsObj = get_category_by_slug('awards');
+          $awardsID = $awardsObj->term_id;
+
+          $yearsObj = get_category_by_slug('years');
+          $yearsID = $yearsObj->term_id;
+
+	      	$activeYears = get_categories(array(
+									      		'child_of' => $yearsID,
 									      		'hide_empty' => 0
 													));
 				?>
         <nav class="nav-team">
           <ul class="list-unstyled">
           	<?php $yearNumber = 0; ?>
-          	<?php foreach ($studentYears as $year) { ?>
+          	<?php foreach ($activeYears as $year) {
+              $cat_title = $year->name;
 
-          		<?php $cat_title = $studentYears[$yearNumber]; ?>
-
-	            <li><a href="#"><?php echo $cat_title; ?></a></li>
-
-	            <?php $yearNumber++; ?>
-
-            <?php } ?>
+              echo '<li><a href="#" data-anchor="year-'. $yearNumber . '">' . $cat_title; . '</a></li>'
+              
+              $yearNumber++; ?>
+            
+            } ?>
           </ul>
         </nav>
       </header>
 
-      <div class="col-xs-12 col-sm-6 col-md-4 members">
-        <h4><?php echo $cat_title; ?></h4>
-        <?php if ( is not in awards ) : ?>
 
-	        <ul class="list-unstyled">
-	          <li><a href="#"><h4>Andrew Krigline</h4></a></li>
-	        </ul>
 
-	      <?php endif; ?>
-      </div>
+      <?php foreach ($activeYears as $year) { ?>
 
-      <div class="col-xs-12 col-sm-6 col-md-8 awards">
-      	<?php if (is in awards) : ?>
+        <div class="col-xs-12 col-sm-6 col-md-4 members">
 
-	        <dl class="row">
-	          <span class="award col-xs-6 col-sm-4 col-md-3">
-	              <dt><img src="img/addy.png" alt="addys"><span class="sr-only">Addy Award</span></dt>
-	              <dd>Addy Award Title</dd>
-	          </span>
-	        </dl>
+          <?php $cat_title = $year->name; ?>
+          <?php $cat_ID = $year->term_id; ?>
 
-	      <?php endif; ?>
-      </div>
+          <h4><?php echo $cat_title; ?></h4>
+
+          <?php query_posts( array( 'category__and'=>array( $cat_ID, $studentsID ) ) ); ?>
+          <?php if (have_posts()) : ?>
+          
+            <ul class="list-unstyled">
+              <?php while ( have_posts() ) : the_post(); ?>
+                <li><h4><?php the_title(); ?></h4></li>
+              <?php endwhile; ?>
+            </ul>
+
+          <?php endif; ?>
+          <?php wp_reset_query(); ?>
+
+        </div><!-- /members -->
+
+
+        <div class="col-xs-12 col-sm-6 col-md-8 awards">
+
+          <?php query_posts( array( 'category__and'=>array( $cat_ID, $awardsID ) ) ); ?>
+          <?php if (have_posts()) : ?>
+            
+            <dl class="row">
+
+              <?php while ( have_posts() ) : the_post(); ?>
+                <span class="award col-xs-6 col-sm-4 col-md-3">
+                  <dt>
+                    <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' ); ?>
+                    <img src="<?php echo $image[0]; ?>" alt="<?php the_title(); ?>">
+                    <span class="sr-only"><?php the_title(); ?></span>
+                  </dt>
+                  <dd><h4><?php the_excerpt(); ?></h4></dd>
+                </span>
+              <?php endwhile; ?>
+            
+            </dl>
+
+          <?php endif; ?>
+          <?php wp_reset_query(); ?>
+
+        </div>
+
+      <?php } ?>
+
     </div>
   </section>
 
