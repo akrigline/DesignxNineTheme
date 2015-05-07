@@ -23,10 +23,12 @@
 
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-  <link href='http://fonts.googleapis.com/css?family=Oswald:400,700|Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400italic,400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/jquery.bxslider.css">
 
   <script src="<?php bloginfo('template_directory'); ?>/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+  <?php wp_head(); ?>
 </head>
 <body>
 <!--[if lt IE 8]>
@@ -44,7 +46,7 @@
         <a class="navbar-brand" href="#">DesignxNine</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
-	    <?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); ?>
+	    <?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu', 'container' => false, 'menu_class' => 'nav navbar-nav navbar-right' ) ); ?>
       </div><!--/.navbar-collapse -->
     </div>
   </nav>

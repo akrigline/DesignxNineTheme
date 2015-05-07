@@ -22,9 +22,10 @@
   </footer>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+  <script>window.jQuery || document.write('<script src="<?php bloginfo('template_directory'); ?>/js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
   <script src="<?php bloginfo('template_directory'); ?>/js/vendor/bootstrap.min.js"></script>
+  <script src="<?php bloginfo('template_directory'); ?>/js/vendor/jquery.bxslider.min.js"></script>
 
   <script src="<?php bloginfo('template_directory'); ?>/js/main.js"></script>
 
@@ -37,5 +38,6 @@
     r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
     ga('create','UA-XXXXX-X','auto');ga('send','pageview');
   </script>
+  <?php wp_footer(); ?>
 </body>
 </html>

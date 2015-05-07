@@ -1,15 +1,31 @@
-/*----------------------------
-Design and Development by Andrew Krigline
-akrigline.com
---------------*/
+/*!
+Theme Name: designxnine
+Theme URI: http://underscores.me/
+Author: Underscores.me
+Author URI: http://underscores.me/
+Description: Description
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: designxnine
+Tags:
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+
+designxnine is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, Inc.
+
+Normalizing styles have been helped along thanks to the fine work of
+Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
+*/
 
 @font-face {
   font-family: 'Uvers-UltraCon-Thin';
-  src: url('../fonts/UversUltraConThin.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/UversUltraConThin.otf')  format('opentype'),
-        url('../fonts/UversUltraConThin.woff') format('woff'),
-        url('../fonts/UversUltraConThin.ttf')  format('truetype'),
-        url('../fonts/UversUltraConThin.svg#UniversLTStd-LightUltraCn') format('svg');
+  src: url('fonts/UversUltraConThin.eot?#iefix') format('embedded-opentype'),
+        url('fonts/UversUltraConThin.otf')  format('opentype'),
+        url('fonts/UversUltraConThin.woff') format('woff'),
+        url('fonts/UversUltraConThin.ttf')  format('truetype'),
+        url('fonts/UversUltraConThin.svg#UniversLTStd-LightUltraCn') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -21,9 +37,27 @@ akrigline.com
   font-weight:normal;
 }
 
-.oswald{
-  font-family: 'Oswald', sans-serif;
+body{
+  font-family:'Open Sans', Helvetica, sans-serif;
 }
+
+h2{
+  font-size:1.4em;
+  font-weight:700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  line-height:1.8em;
+  margin:0;
+}
+
+a{
+  color:#ccc;
+  &:hover{
+    text-decoration: none;
+    color:#fff;
+  }
+}
+
 
 html,body{
 	height:100%;
@@ -143,7 +177,7 @@ figure{
   //box-shadow: 0 .4em .2em rgba(0,0,0,0.6) inset;
   figcaption {
     padding: 1em 2em;
-    width: 33.3333%;
+    width: auto;
     position: absolute;
     bottom: 10em;
     right: 0;
@@ -155,11 +189,11 @@ figure{
 
 
 .portfolio{
-	height:100%;
+	height:auto;
 	figure{
 		position:relative;
 		height:0;
-		padding-top:17%;
+		padding-top:50%;
 		&:hover figcaption{
 			opacity:1;
 		}
@@ -177,6 +211,14 @@ figure{
 		max-width:none;
 		max-height:none;
 	}
+  a{
+    width:100%;
+    height:100%;
+    display: inline-block;
+    &:hover{
+      color:#000;
+    }
+  }
 	figcaption{
 		top:0;
 		right:0;
@@ -190,7 +232,20 @@ figure{
 		text-align:center;
 		opacity:0;
 		transition:all 600ms;
+
+    vertical-align: middle;
+    div{
+      margin:3em auto 0;
+    }
 	}
+}
+
+@media screen and (min-width:768px){
+  .portfolio{
+    figure{
+      padding-top:25%;
+    }
+  }
 }
 
 .team {
@@ -227,16 +282,4 @@ figure{
 .background-img{
 	background-size:cover;
 	background-attachment:fixed;
-}
-
-.first{
-	background-image: url(../img/img1.jpg);
-}
-
-.second{
-	background-image: url(../img/img3.jpg);
-}
-
-.third{
-	background-image: url(../img/img4.jpg);
 }
