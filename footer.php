@@ -8,15 +8,20 @@
  */
 ?>
 
-  <footer>
+  <footer id="contact">
     <div class="container">
       <div class="col-xs-12 col-sm-6">
         <h2>Creative Directors</h2>
-        <h4>Janice Troutman</h4>
-        <h4>John Morrison</h4>
+        <h5>Janice Troutman</h5>
+        <p><a href="mailto:jmorrison@uakron.edu">jmorrison@uakron.edu</a></p>
+        <h5>John Morrison</h5>
+        <p><a href="mailto:jstrout@uakron.edu">jstrout@uakron.edu</a></p>
       </div>
       <div class="col-xs-12 col-sm-6">
-
+        <h2>Address</h2>
+        <p>Myers School of Art</p>
+        <p>150 E Exchange St</p>
+        <p>Akron, OH 44325-7801</p>
       </div>
     </div>
   </footer>
@@ -26,6 +31,8 @@
 
   <script src="<?php bloginfo('template_directory'); ?>/js/vendor/bootstrap.min.js"></script>
   <script src="<?php bloginfo('template_directory'); ?>/js/vendor/jquery.bxslider.min.js"></script>
+  <script src="<?php bloginfo('template_directory'); ?>/js/vendor/jquery.localScroll.min.js"></script>
+  <script src="<?php bloginfo('template_directory'); ?>/js/vendor/jquery.scrollTo.min.js"></script>
 
   <script src="<?php bloginfo('template_directory'); ?>/js/main.js"></script>
 

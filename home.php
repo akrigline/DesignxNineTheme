@@ -26,14 +26,16 @@ get_header(); ?>
            ?>
           <section class="intro background-img" <?php echo $background; ?> id="welcome">
             <header>
-              <h1 class="welcome-title background-img" <?php echo $background; ?>>design<span class="basedown background-img" <?php echo $background; ?>>x</span>nine<span class="welcome-dots background-img" <?php echo $background; ?>>.........</span></h1>
+              <div class="text">
+                <h1 class="welcome-title background-img" <?php echo $background; ?>>design<span class="basedown background-img" <?php echo $background; ?>>x</span>nine<span class="welcome-dots background-img" <?php echo $background; ?>>.........</span></h1>
+              </div>
             </header>
             <figure class="jumbotron">
               
               <img src="<?php echo $image[0]; ?>" alt="<?php the_title(); ?>" class="sr-only">
               <figcaption>
                 <h2><?php the_title(); ?></h2>
-                <a href="<?php the_permalink(); ?>">view project <span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a href="<?php the_permalink(); ?>"><strong>View Project</strong> <span class="glyphicon glyphicon-chevron-right"></span></a>
               </figcaption>
             </figure>
           </section>
@@ -45,15 +47,17 @@ get_header(); ?>
            ?>
           <section class="intro background-img" <?php echo $background; ?>>
             <header>
-              <h1 class="background-img" <?php echo $background; ?>><?php the_field('header'); ?></h1>
-              <p><?php echo get_the_content(); ?></p>
+              <div class="text">
+                <h1 class="background-img" <?php echo $background; ?>><?php the_field('header'); ?></h1>
+                <p><?php echo get_the_content(); ?></p>
+              </div>
             </header>
             <figure class="jumbotron">
               
               <img src="<?php echo $image[0]; ?>" alt="<?php the_title(); ?>" class="sr-only">
               <figcaption>
                 <h2><?php the_title(); ?></h2>
-                <a href="<?php the_permalink(); ?>">view project <span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a href="<?php the_permalink(); ?>"><strong>View Project</strong> <span class="glyphicon glyphicon-chevron-right"></span></a>
               </figcaption>
 
             </figure>
@@ -86,7 +90,7 @@ get_header(); ?>
             <figcaption>
             <div>
               <h4><?php the_title(); ?></h4>
-              View Project <span class="glyphicon glyphicon-chevron-right"></span>
+              <strong>View Project</strong> <span class="glyphicon glyphicon-chevron-right"></span>
             </div>
             </figcaption>
             </a>
@@ -115,7 +119,8 @@ get_header(); ?>
 
 	      	$activeYears = get_categories(array(
 									      		'child_of' => $yearsID,
-									      		'hide_empty' => 0
+									      		'hide_empty' => 0,
+                            'order' => 'DESC'
 													));
 				?>
         <nav class="nav-team">
@@ -134,36 +139,37 @@ get_header(); ?>
       </header>
 
 
-<ul class="bxslider">
+<ul class="bxslider list-unstyled clearfix">
       <?php foreach ($activeYears as $year) { ?>
       <li class="clearfix">
-        <div class="col-xs-12 col-sm-4 col-md-4 members">
+        <div class="row">
+        <div class="col-xs-12 col-sm-4 col-md-3 members">
 
           <?php $cat_title = $year->name; ?>
           <?php $cat_ID = $year->term_id; ?>
 
-          <h3><?php echo $cat_title; ?></h3>
 
+          <h2>students</h2>
           <?php query_posts( array( 'category__and'=>array( $cat_ID, $studentsID ) ) ); ?>
           <?php if (have_posts()) : ?>
-          
             <ul class="list-unstyled">
               <?php while ( have_posts() ) : the_post(); ?>
-                <li><h4><?php the_title(); ?></h4></li>
+                <li><h5><?php the_title(); ?></h5></li>
               <?php endwhile; ?>
             </ul>
-
+          <?php else : ?>
+            <h5>We didn't operate this year.</h5>
           <?php endif; ?>
           <?php wp_reset_query(); ?>
 
         </div><!-- /members -->
 
 
-        <div class="col-xs-12 col-sm-8 col-md-8 awards">
+        <div class="col-xs-12 col-sm-8 col-md-9 awards">
 
+          <h2>awards</h2>
           <?php query_posts( array( 'category__and'=>array( $cat_ID, $awardsID ) ) ); ?>
           <?php if (have_posts()) : ?>
-            
             <dl class="row">
 
               <?php while ( have_posts() ) : the_post(); ?>
@@ -173,16 +179,18 @@ get_header(); ?>
                     <img src="<?php echo $image[0]; ?>" alt="<?php the_title(); ?>">
                     <span class="sr-only"><?php the_title(); ?></span>
                   </dt>
-                  <dd><h4><?php the_title(); ?></h4>
+                  <dd><h5><?php the_title(); ?></h5>
                   <p><?php echo get_the_content(); ?></p></dd>
                 </span>
               <?php endwhile; ?>
             
             </dl>
-
+          <?php else : ?>
+            <h5>No awards this year, try another!</h5>
           <?php endif; ?>
           <?php wp_reset_query(); ?>
 
+        </div>
         </div>
       </li>
       <?php } ?>

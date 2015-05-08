@@ -1,14 +1,13 @@
 /*!
 Theme Name: designxnine
-Theme URI: http://underscores.me/
-Author: Underscores.me
-Author URI: http://underscores.me/
-Description: Description
+Theme URI: http://designxnine.com
+Author: Andrew Krigline
+Author URI: http://akrigline.com
+Description: DesignxNine's new website, as created by Andrew Krigline
 Version: 1.0.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: designxnine
-Tags:
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
@@ -18,6 +17,8 @@ designxnine is based on Underscores http://underscores.me/, (C) 2012-2015 Automa
 Normalizing styles have been helped along thanks to the fine work of
 Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 */
+
+$gray: #aaaaaa;
 
 @font-face {
   font-family: 'Uvers-UltraCon-Thin';
@@ -47,7 +48,24 @@ h2{
   text-transform: uppercase;
   letter-spacing: .1em;
   line-height:1.8em;
-  margin:0;
+  margin:0 0 .4em;
+  border-bottom:1px solid #fff;
+}
+
+h3{
+  font-weight:100;
+  text-transform: uppercase;
+}
+
+h4{
+  font-weight:700;
+  text-transform: uppercase;
+}
+
+h5{
+  font-size:1.2em;
+  font-weight:300;
+  text-transform: none;
 }
 
 a{
@@ -66,6 +84,15 @@ html,body{
 .top-nav{
 	margin-bottom:0;
 	border-radius:0;
+  .navbar-brand{
+    padding:.5em;
+  }
+  img{
+    height:100%;
+  }
+  .active a{
+    color:#fff;
+  }
 }
 
 section{
@@ -96,38 +123,56 @@ figure{
     width:100%;
 		height:50%;
 		position:relative;
+    .text{
+
+      max-width:-webkit-max-content;
+      max-width:max-content;
+      height:-webkit-min-content;
+
+      margin:auto;
+
+      position:absolute;
+      top:0;
+      bottom:0;
+      left:0;
+      right:0;
+
+    }
 		h1{
       line-height:1.1em;
       text-align: center;
 			max-width:-webkit-max-content;
 			max-width:max-content;
 			height:-webkit-min-content;
+      height:min-content;
 
 			-webkit-background-clip:text;
 			background-clip:text;
-
-			-webkit-text-fill-color:transparent;
-			text-fill-color:transparent;
-
+      @media screen and (min-width:768px){
+  			-webkit-text-fill-color:transparent;
+  			text-fill-color:transparent;
+      }
+      margin-top:3em;
+      @media screen and (min-width:768px){
+        margin-top:0;
+      }
+      
 			color:#ccc;
 
       @extend .oswald;
       text-transform: uppercase;
       font-weight:800;
-      font-size:8em;
+      font-size:3em;
       letter-spacing: .1em;
 
-			margin:auto;
-
-			position:absolute;
-			top:0;
-			bottom:0;
-			left:0;
-			right:0;
+      @media screen and (min-width:768px){
+        font-size:8em;
+      }
 
       &.welcome-title{
         @extend .logotype;
-        font-size:12em;
+        font-size:6em;
+
         
         .basedown{
           display:inline-block;
@@ -135,9 +180,10 @@ figure{
           bottom:-0.3em;
           -webkit-background-clip:text;
           background-clip:text;
-
-          -webkit-text-fill-color:transparent;
-          text-fill-color:transparent;
+          @media screen and (min-width:768px){
+            -webkit-text-fill-color:transparent;
+            text-fill-color:transparent;
+          }
         }
         .welcome-dots{
           letter-spacing: 0.09em;
@@ -149,22 +195,28 @@ figure{
           left:2.3em;
           -webkit-background-clip:text;
           background-clip:text;
+          @media screen and (min-width:768px){
+            -webkit-text-fill-color:transparent;
+            text-fill-color:transparent;
+          }
+        }
 
-          -webkit-text-fill-color:transparent;
-          text-fill-color:transparent;
+        @media screen and (min-width:768px){
+          font-size:10em;
+        }
+        @media screen and (min-width:992px){
+          font-size:12em;
         }
       }
 		}
 		p{
 			color:#ccc;
-			width:50%;
-
-			position:absolute;
-			top:60%;
-			left:0;
-			right:0;
+			width:100%;
 
 			margin:auto;
+      @media screen and (min-width:768px){
+        width:50%;
+      }
 		}
 	}
 }
@@ -204,11 +256,11 @@ figure{
 		bottom:0;
 		left:0;
 		right:0;
+    margin:auto;
 		width:auto;
 		height:auto;
-		min-height:100%;
 		min-width:100%;
-		max-width:none;
+		max-width:100%;
 		max-height:none;
 	}
   a{
@@ -235,7 +287,16 @@ figure{
 
     vertical-align: middle;
     div{
-      margin:3em auto 0;
+      position:absolute;
+      top:0;
+      right:0;
+      left:0;
+      bottom:0;
+      margin:auto;
+
+      max-width:-webkit-max-content;
+      max-width:max-content;
+      height:-webkit-min-content;
     }
 	}
 }
@@ -257,14 +318,34 @@ figure{
     li {
       display: inline-block;
       a {
-        padding: 1em 2em;
+        transition: color 300ms;
+        color: $gray;
+        font-weight:700;
+        letter-spacing: .1em;
+        font-size:1.4em;
+
+        padding: .3em .6em;
+        border-bottom:none;
+        margin: 0 .2em;
+
+        &:hover, &:focus, &.active{
+          color:#000;
+          text-decoration:none;
+        }
       }
     }
+  }
+  h2{
+    border-bottom:none;
+    background:$gray;
+    color:#fff;
+    padding:.1em;
+    text-align:center;
   }
 }
 
 .members {
-  text-align: center;
+  text-align: left;
   a {
     padding: .5em 2em;
     display: inline-block;
@@ -280,6 +361,22 @@ figure{
 }
 
 .background-img{
-	background-size:cover;
-	background-attachment:fixed;
+  background-size: auto 100%;
+  background-position:top center;
+  @media screen and (min-width:768px){
+  	background-size:cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-attachment:fixed;
+    background-position:center center;
+  }
+}
+
+footer{
+  background:darken($gray,50%);
+  color:$gray;
+
+  padding: 2em 0 4em;
+  margin-top:0;
 }
